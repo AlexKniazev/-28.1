@@ -244,7 +244,6 @@ class ManyWebElements(WebElement):
         return result
 
     def get_attribute(self, attr_name):
-        """ Get attribute of all elements. """
 
         results = []
         elements = self.find()
@@ -255,16 +254,12 @@ class ManyWebElements(WebElement):
         return results
 
     def highlight_and_make_screenshot(self, file_name='element.png'):
-        """ Highlight elements and make the screen-shot of all page. """
 
         elements = self.find()
 
         for element in elements:
-            # Scroll page to the element:
             self._web_driver.execute_script("arguments[0].scrollIntoView();", element)
 
-            # Add red border to the style:
             self._web_driver.execute_script("arguments[0].style.border='3px solid red'", element)
 
-        # Make screen-shot of the page:
         self._web_driver.save_screenshot(file_name)
